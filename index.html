@@ -41,7 +41,7 @@
             background-position: center; 
             background-size: cover;
             background-repeat: no-repeat;
-            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
         }
         .container{
             width: 90%;
@@ -159,6 +159,7 @@
         <div class="container" id="content1">
             <div class="item">
                      <div class="border-0" id="box-list">
+                        <button style="width: 200px;" class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#Modal1" @change="onFileChange">ดาวน์โหลด</button>
                         <table style="width:100%">
                             <tr>
                                 <th>Person 1</th>
@@ -181,7 +182,46 @@
          </div>
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    
+    <script>
+        var appControl = new Vue({
+            el:"#control",
+            data:{
+              show:false,
+              show_form :true,
+              image_f : "",
+              items: {
+                title: "",
+                description: "",
+                date : "",
+                
+                userName: "",
+                userLastname: "",
+                phoneNumber: ""
+            },
+            },
+            methods:{
+              toggle1: function(){
+                console.log("show_form", this.show_form);
+                this.show_form = !this.show_form;
+              },
+              setRequirement: function(){
+                if(this.checkValid() == false){
+                  console.log("false");
+                  this.show_form = false;
+                }else{
+
+                  console.log("true");
+                  var myModal = new bootstrap.Modal(document.getElementById('Modal2'))
+                  myModal.toggle();
+                  this.show_form = true;
+                }
+               
+                //this.show_form = false;
+              },
+            }
+        })
+    </script>
     </body>
 </html>
